@@ -24,26 +24,28 @@ let computerScore = 0;
 
 function playRound(computerChoice, playerChoice) {
   if (playerChoice == computerChoice) {
-    alert("Tied!");
+    console.log("Tied!");
   }
+
   if (
     (playerChoice == "Rock" && computerChoice == "Paper") ||
     (playerChoice == "Paper" && computerChoice == "Scissors") ||
     (playerChoice == "Scissors" && computerChoice == "Rock")
   ) {
-    alert(`You lose! ${computerChoice} beats ${playerChoice}`);
+    computerScore = computerScore + 1;
+    console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
   }
-  if (
-    (computerChoice == "Rock" && playerChoice == "Paper") ||
-    (computerChoice == "Paper" && playerChoice == "Scissors") ||
-    (computerChoice == "Scissors" && playerChoice == "Rock")
-  ) {
-    alert(`You win! ${playerChoice} beats ${computerChoice}`);
+  else {
+    playerScore = playerScore + 1;
+    console.log(`You win! ${playerChoice} beats ${computerChoice}`);
   }
 }
 
-let computerChoice = getComputerChoice();
-// console.log(computerChoice);
-let playerChoice = getPlayerChoice();
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    playRound(getComputerChoice(), getPlayerChoice());
+  }
+  console.log(`Computer score: ${computerScore}\nPlayer score: ${playerScore}`);
+}
 
-playRound(computerChoice, playerChoice);
+playGame();
