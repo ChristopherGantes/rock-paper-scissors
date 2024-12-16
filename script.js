@@ -11,20 +11,6 @@ function getComputerChoice() {
   }
 }
 
-// probability testing
-/* 
-let choices = [];
-for (let i = 0; i < 30000; i++) {
-    choices.push(getComputerChoice());
-}
-
-choices.sort();
-
-for (let i = 0; i < choices.length; i++) {
-    console.log(choices[i]);
-}
-*/
-
 function getPlayerChoice() {
   let choice = prompt("Choose!: Rock, Paper, or Scissors");
   choice = choice.trim();
@@ -32,3 +18,32 @@ function getPlayerChoice() {
   choice = choice.slice(0, 1).toUpperCase() + choice.slice(1);
   return choice;
 }
+
+let playerScore = 0;
+let computerScore = 0;
+
+function playRound(computerChoice, playerChoice) {
+  if (playerChoice == computerChoice) {
+    alert("Tied!");
+  }
+  if (
+    (playerChoice == "Rock" && computerChoice == "Paper") ||
+    (playerChoice == "Paper" && computerChoice == "Scissors") ||
+    (playerChoice == "Scissors" && computerChoice == "Rock")
+  ) {
+    alert(`You lose! ${computerChoice} beats ${playerChoice}`);
+  }
+  if (
+    (computerChoice == "Rock" && playerChoice == "Paper") ||
+    (computerChoice == "Paper" && playerChoice == "Scissors") ||
+    (computerChoice == "Scissors" && playerChoice == "Rock")
+  ) {
+    alert(`You win! ${playerChoice} beats ${computerChoice}`);
+  }
+}
+
+let computerChoice = getComputerChoice();
+// console.log(computerChoice);
+let playerChoice = getPlayerChoice();
+
+playRound(computerChoice, playerChoice);
